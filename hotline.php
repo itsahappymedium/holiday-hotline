@@ -97,6 +97,12 @@ class Holiday_Hotline {
         return $this->response;
     }
 
+    /**
+     * Process the input passed to the hotline
+     * @param  string $action Action (optional)
+     * @param  int $digits    Digits (optional)
+     * @return this           Self
+     */
     public function process_input( $action, $digits ) {
         if ( ! empty($action) ) {
             // Do something
@@ -127,6 +133,8 @@ class Holiday_Hotline {
             // If no action or digits, do main menu
             $this->main_menu();
         }
+
+        return $this;
     }
 }
 
