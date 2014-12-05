@@ -4,7 +4,7 @@
  * Holiday Hotline Class
  */
 
-class HolidayHotline {
+class Holiday_Hotline {
 
     /**
      * Options
@@ -131,4 +131,4 @@ class HolidayHotline {
 }
 
 // Execute
-new HolidayHotline();
+new Holiday_Hotline();
