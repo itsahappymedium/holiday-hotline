@@ -28,8 +28,14 @@ class Holiday_Hotline {
 
         // Set options for voice
         $this->options = array(
-            'voice'     => 'woman',
-            'language'  => 'en_gb'
+            'baseUrl'           => 'http://hotline.itsahappymedium.com/hotline.php?',
+            'voice'             => 'woman',
+            'language'          => 'en-gb',
+            'baking_options'    => array(
+                'turkey',
+                'ham',
+                'duck'
+            )
         );
 
         // Set our response headers
@@ -77,22 +83,57 @@ class Holiday_Hotline {
     }
 
     /**
+     * Print out a baking menu
+     * @return object Response
+     */
+    public function baking_menu() {
+        $this->gather(array(
+            'action'        => $this->options['baseUrl'] . http_build_query( array(
+                'action' => 'baking_menu'
+            )),
+            'numDigits'     => 1,
+            'finishOnKey'   => 'any digit'
+        ), "
+            Pick an option.
+        ");
+
+        print $this->response;
+
+        return $this->response;
+    }
+
+    /**
      * Speak and gather the main menu
      * @return object Response
      */
     public function main_menu() {
         $this->_gather(array(
-            'action'        => 'http://hotline.itsahappymedium.com/hotline.php?action=main_menu',
+            'action'        => $this->options['baseUrl'] . http_build_query( array(
+                'action' => 'main_menu'
+            )),
             'numDigits'     => 1,
             'finishOnKey'   => 'any digit'
         ), "
-            Welcome to the Happy Medium Holiday Hotline, spreading Christmas cheer since 2014.
             Press 1 for a holiday carol sung by Happy Medium team members.
             Press 2 for a holiday baking tip.
             Press 3 for a dance party.
         ");
 
         print $this->response;
+
+        return $this->response;
+    }
+
+    /**
+     * Play a holiday carol
+     * @return object Response
+     */
+    public function play_carol() {
+        $this->_say("
+            This is a holiday carol.
+        ");
+
+        $this->main_menu();
 
         return $this->response;
     }
@@ -118,9 +159,22 @@ class Holiday_Hotline {
                         return;
                     }
 
-                    $this->_say('You pressed ' . $digits);
+                    switch ( $digits ) {
+                        case 1:
+                            $this->play_carol();
 
-                    print $this->response;
+                            break;
+
+                        case 2:
+                            $this->baking_menu();
+
+                            break;
+
+                        default:
+                            $this->main_menu();
+
+                            break;
+                    }
 
                     break;
 
@@ -131,10 +185,23 @@ class Holiday_Hotline {
             }
         } else {
             // If no action or digits, do main menu
-            $this->main_menu();
+            $this->welcome();
         }
 
         return $this;
+    }
+
+    /**
+     * Say a welcome message
+     * @return object Response
+     */
+    public function welcome() {
+        $this->_say("Welcome to the Happy Medium Holiday Hotline, spreading Christmas cheer since 2014.");
+
+        // Automatically start the main menu, which prints the response
+        $this->main_menu();
+
+        return $this->response;
     }
 }
 
