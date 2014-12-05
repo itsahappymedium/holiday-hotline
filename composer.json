@@ -1,0 +1,14 @@
+{
+    "name": "itsahappymedium/holiday-hotline",
+    "description": "Happy Medium's Holiday Hotline",
+    "require": {
+        "twilio/sdk": "~3.12"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Josh Larson",
+            "email": "jplhomer@gmail.com"
+        }
+    ]
+}

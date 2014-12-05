@@ -1,0 +1,29 @@
+{
+  "name": "holiday-hotline",
+  "version": "0.1.0",
+  "description": "Happy Medium's Holiday Hotline",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/itsahappymedium/holiday-hotline.git"
+  },
+  "keywords": [
+    "hotline",
+    "twilio",
+    "phone"
+  ],
+  "author": "Josh Larson <jplhomer@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/itsahappymedium/holiday-hotline/issues"
+  },
+  "homepage": "https://github.com/itsahappymedium/holiday-hotline",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-rsync": "^0.6.2",
+    "load-grunt-tasks": "^1.0.0"
+  }
+}
