@@ -116,6 +116,7 @@ class Holiday_Hotline {
             Press 1 for a holiday carol sung by Happy Medium team members.
             Press 2 for a holiday baking tip.
             Press 3 for a dance party.
+            Press 0 to repeat the options.
         ");
 
         return $this->response;
@@ -164,6 +165,9 @@ class Holiday_Hotline {
                             $this->baking_menu();
 
                             break;
+
+                        case 0:
+                            $this->main_menu();
 
                         default:
                             $this->main_menu();
