@@ -98,8 +98,6 @@ class Holiday_Hotline {
             Pick an option.
         ");
 
-        print $this->response;
-
         return $this->response;
     }
 
@@ -119,8 +117,6 @@ class Holiday_Hotline {
             Press 2 for a holiday baking tip.
             Press 3 for a dance party.
         ");
-
-        print $this->response;
 
         return $this->response;
     }
@@ -186,6 +182,9 @@ class Holiday_Hotline {
             // If no action or digits, do main menu
             $this->welcome();
         }
+
+        // Print once
+        print $this->response;
 
         return $this;
     }
