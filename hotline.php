@@ -79,6 +79,27 @@ class Holiday_Hotline {
     }
 
     /**
+     * Print out information about Happy Medium
+     * @return object Response
+     */
+    public function about() {
+        $this->_say("
+            Happy Medium is a full-service interactive agency in Des Moines, Iowa, offering
+            advertising, social media management, media buying, website development,
+            search engine optimization, and graphic design services.
+            Happy Medium's offerings aren't limited to a physical location,
+            which allows the ambitious interactive agency to serve clients of
+            various sizes and locations.
+            Learn more by visiting It's A Happy Medium dot Com
+            or by calling 5 1 5, 2 1 8, 14 77.
+        ");
+
+        $this->main_menu();
+
+        return $this->response;
+    }
+
+    /**
      * Print out a baking menu
      * @return object Response
      */
@@ -171,6 +192,7 @@ class Holiday_Hotline {
             Press 1 for a holiday carol sung by Happy Medium team members.
             Press 2 for a holiday baking tip.
             Press 3 for winter travel tips.
+            Press 4 to learn more about Happy Medium.
             Press 0 to repeat the options.
         ");
 
@@ -224,8 +246,17 @@ class Holiday_Hotline {
                         case 3:
                             $this->winter_travel_tips();
 
+                            break;
+
+                        case 4:
+                            $this->about();
+
+                            break;
+
                         case 0:
                             $this->main_menu();
+
+                            break;
 
                         default:
                             $this->main_menu();
