@@ -31,12 +31,7 @@ class Holiday_Hotline {
             'baseHost'          => 'http://' . $_SERVER['HTTP_HOST'],
             'baseUrl'           => 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME'] . '?',
             'voice'             => 'woman',
-            'language'          => 'en-gb',
-            'baking_options'    => array(
-                'turkey',
-                'ham',
-                'duck'
-            )
+            'language'          => 'en-gb'
         );
 
         // Set our response headers
@@ -88,15 +83,75 @@ class Holiday_Hotline {
      * @return object Response
      */
     public function baking_menu() {
-        $this->gather(array(
+        $this->_gather(array(
             'action'        => $this->options['baseUrl'] . http_build_query( array(
                 'action' => 'baking_menu'
             )),
             'numDigits'     => 1,
             'finishOnKey'   => 'any digit'
         ), "
-            Pick an option.
+            Press 1 for Turkey.
+            Press 2 for Ham.
+            Press 3 for Duck.
+            Press 9 to return to the main menu.
+            Press 0 to repeat the options.
         ");
+
+        return $this->response;
+    }
+
+    /**
+     * Print out baking tips
+     * @param  string $food Food type
+     * @return object       Response
+     */
+    public function baking_tips( $food ) {
+
+        switch ( $food ) {
+            case 'turkey':
+                $this->_say("
+                    Tips for cooking turkey:
+                    Thawing a frozen turkey requires patience.
+                    The safest method is to thaw turkey in the refrigerator.
+                    Cooking times will differ depending on whether your bird was purchased fresh or frozen.
+                    Remember to carve your turkey with a very sharp or electric knife.
+                ");
+
+                break;
+
+            case 'ham':
+                $this->_say("
+                    Tips for cooking ham:
+                    Almost all hams have either been partially or fully cooked before they are packaged.
+                    A partially cooked ham has been brought to an internal temperature
+                    of 137 degrees fahrenheit, which kills any bacteria.
+                    A fully cooked ham will require about 10 minutes per pound in
+                    order to be heated all the way through.
+                ");
+
+                break;
+
+            case 'duck':
+                $this->_say("
+                    Tips for cooking duck:
+                    By properly cooking duck, you can eliminate up to 70% of the fat,
+                    which leaves a delicious, crisp skin.
+                    Confit duck comes from an old method of preserving meat by seasoning
+                    it and slowly cooking it in its own fat. The cooked meat was then packed
+                    into a crock and covered with its cooking fat which acted as a seal and
+                    preservative. This method produces a particularly tender meat.
+                ");
+
+                break;
+
+            default:
+                $this->baking_menu();
+
+                break;
+        }
+
+        // Return to the baking menu afterward
+        $this->baking_menu();
 
         return $this->response;
     }
@@ -177,13 +232,55 @@ class Holiday_Hotline {
 
                     break;
 
+                /**
+                 * Someone chose an option from the baking menu
+                 */
+                case 'baking_menu':
+                    if ( ! is_int($digits) ) {
+                        $this->main_menu();
+
+                        return;
+                    }
+
+                    switch ( $digits ) {
+                        case 1:
+                            $this->baking_tips('turkey');
+
+                            break;
+
+                        case 2:
+                            $this->baking_tips('ham');
+
+                            break;
+
+                        case 3:
+                            $this->baking_tips('duck');
+
+                            break;
+
+                        case 9:
+                            $this->main_menu();
+
+                            break;
+
+                        case 0:
+                            $this->baking_menu();
+
+                            break;
+
+                        default:
+                            $this->baking_menu();
+
+                            break;
+                    }
+
                 default:
                     $this->main_menu();
 
                     break;
             }
         } else {
-            // If no action or digits, do main menu
+            // If no action or digits, do welcome
             $this->welcome();
         }
 
