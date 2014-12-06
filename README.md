@@ -33,9 +33,9 @@ $ grunt deploy
 
 The next step is to tell Twilio that you want to use the endpoint on your new server for Voice calls.
 
-Let's assume you've deployed your hotline to `http://hotline.yoursite.com/hotline.php`. Create an account on [Twilio][http://twilio.com] and find your [Numbers](https://www.twilio.com/user/account/phone-numbers/incoming) section.
+Let's assume you've deployed your hotline to `http://hotline.yoursite.com/hotline.php`. Create an account on [Twilio](http://twilio.com) and find your [Numbers](https://www.twilio.com/user/account/phone-numbers/incoming) section.
 
-Click on the phone number given to you after having created an account, and update the Voice Request URL to match the ULR of your deployed hotline.
+Click on the phone number given to you after having created an account, and update the Voice Request URL to match the URL of your deployed hotline.
 
 Then, give your Twilio phone number a ring, and see what happens!
 
