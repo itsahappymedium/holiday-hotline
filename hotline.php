@@ -28,7 +28,8 @@ class Holiday_Hotline {
 
         // Set options for voice
         $this->options = array(
-            'baseUrl'           => 'http://hotline.itsahappymedium.com/hotline.php?',
+            'baseHost'          => 'http://' . $_SERVER['HTTP_HOST'],
+            'baseUrl'           => 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME'] . '?',
             'voice'             => 'woman',
             'language'          => 'en-gb',
             'baking_options'    => array(
@@ -129,9 +130,7 @@ class Holiday_Hotline {
      * @return object Response
      */
     public function play_carol() {
-        $this->_say("
-            This is a holiday carol.
-        ");
+        $this->response->play( $this->options['baseHost'] . '/assets/let_it_snow.mp3' );
 
         $this->main_menu();
 
