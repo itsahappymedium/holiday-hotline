@@ -170,7 +170,7 @@ class Holiday_Hotline {
         ), "
             Press 1 for a holiday carol sung by Happy Medium team members.
             Press 2 for a holiday baking tip.
-            Press 3 for a dance party.
+            Press 3 for winter travel tips.
             Press 0 to repeat the options.
         ");
 
@@ -220,6 +220,9 @@ class Holiday_Hotline {
                             $this->baking_menu();
 
                             break;
+
+                        case 3:
+                            $this->winter_travel_tips();
 
                         case 0:
                             $this->main_menu();
@@ -298,6 +301,27 @@ class Holiday_Hotline {
         $this->_say("Welcome to the Happy Medium Holiday Hotline, spreading Christmas cheer since 2014.");
 
         // Automatically start the main menu, which prints the response
+        $this->main_menu();
+
+        return $this->response;
+    }
+
+    /**
+     * Print out winter travel tips
+     * @return object Response
+     */
+    public function winter_travel_tips() {
+        $this->_say("
+            Winter driving trips:
+            Avoid driving while you’re fatigued. Getting the proper amount of rest
+            before taking on winter weather tasks reduces driving risks.
+            Never warm up a vehicle in an enclosed area, such as a garage.
+            Make certain your tires are properly inflated.
+            Never mix radial tires with other tire types.
+            Keep your gas tank at least half full to avoid gas line freeze-up.
+            If possible, avoid using your parking brake in cold, rainy and snowy weather.
+        ");
+
         $this->main_menu();
 
         return $this->response;
