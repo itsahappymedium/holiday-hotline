@@ -16,7 +16,7 @@ module.exports = function(grunt) {
             production: {
                 options: {
                     dest: "~/apps/hotline/public",
-                    host: "serverpilot@104.131.181.203"
+                    host: "hotline@104.131.181.203"
                 }
             }
         }
