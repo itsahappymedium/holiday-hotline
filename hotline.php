@@ -109,7 +109,7 @@ class Holiday_Hotline {
                 'action' => 'baking_menu'
             )),
             'numDigits'     => 1,
-            'finishOnKey'   => 'any digit'
+            'finishOnKey'   => ''
         ), "
             Press 1 for Turkey.
             Press 2 for Ham.
@@ -187,7 +187,7 @@ class Holiday_Hotline {
                 'action' => 'main_menu'
             )),
             'numDigits'     => 1,
-            'finishOnKey'   => 'any digit'
+            'finishOnKey'   => ''
         ), "
             Press 1 for a holiday carol sung by Happy Medium team members.
             Press 2 for a holiday baking tip.
